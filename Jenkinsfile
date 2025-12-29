@@ -5,10 +5,6 @@ pipeline {
         maven 'Maven3'   // Must match Global Tool Configuration
     }
 
-    environment {
-        APP_NAME = "spring-boot-sample"
-    }
-
     stages {
 
         stage('Checkout Code') {
