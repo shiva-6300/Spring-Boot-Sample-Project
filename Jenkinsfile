@@ -9,7 +9,7 @@ pipeline {
 
         stage('Checkout Code') {
             steps {
-                git branch: 'main',
+                git branch: 'master',
                     url: 'https://github.com/shiva-6300/Spring-Boot-Sample-Project.git'
             }
         }
