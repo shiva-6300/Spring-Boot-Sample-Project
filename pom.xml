@@ -19,22 +19,16 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>BankApplicationBackend</name>
 
-    <!-- ✅ Ensure Maven produces JAR -->
-    <packaging>jar</packaging>
-
+    <!-- Java target remains 1.8 (NO Java downgrade required) -->
     <properties>
         <java.version>1.8</java.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-        <!-- Sonar properties -->
-        <sonar.projectKey>BankApplicationBackend</sonar.projectKey>
-        <sonar.projectName>BankApplicationBackend</sonar.projectName>
-        <sonar.java.source>1.8</sonar.java.source>
     </properties>
 
     <dependencies>
+
         <!-- Spring Boot -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -82,7 +76,7 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- Lombok -->
+        <!-- ✅ UPDATED Lombok (CRITICAL FIX) -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -102,21 +96,13 @@
     <build>
         <plugins>
 
-            <!-- ✅ Spring Boot Maven Plugin for executable JAR -->
+            <!-- Spring Boot Plugin -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.1.3.RELEASE</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
 
-            <!-- Maven Compiler Plugin -->
+            <!-- Compiler Plugin (NO add-opens here) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -124,17 +110,7 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
-                    <compilerArgs>
-                        <arg>-Xlint:unchecked</arg>
-                    </compilerArgs>
                 </configuration>
-            </plugin>
-
-            <!-- SonarQube Maven Plugin -->
-            <plugin>
-                <groupId>org.sonarsource.scanner.maven</groupId>
-                <artifactId>sonar-maven-plugin</artifactId>
-                <version>3.9.1.2184</version>
             </plugin>
 
         </plugins>
