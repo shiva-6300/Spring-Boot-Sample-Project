@@ -11,7 +11,7 @@ pipeline {
 
     stages {
 
-        stage('Verify Java') {
+        stage('Verify Java & Maven') {
             steps {
                 bat 'java -version'
                 bat 'mvn -version'
@@ -40,7 +40,7 @@ pipeline {
 
     post {
         success {
-            echo 'BUILD SUCCESSFUL'
+            echo 'BUILD SUCCESS'
         }
         failure {
             echo 'BUILD FAILED'
