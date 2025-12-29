@@ -27,38 +27,23 @@ pipeline {
 
         stage('Build') {
             steps {
-                bat 'mvn clean compile -DskipTests'
+                bat 'mvn clean package -DskipTests'
             }
         }
 
-        stage('SonarQube Analysis') {
+        stage('Test') {
             steps {
-                withSonarQubeEnv('SonarQube') {
-                    bat '''
-                    mvn sonar:sonar ^
-                    -Dsonar.projectKey=BankApplicationBackend ^
-                    -Dsonar.projectName=BankApplicationBackend ^
-                   
-                    '''
-                }
+                bat 'mvn test'
             }
         }
-
-        // stage('Quality Gate') {
-        //     steps {
-        //         timeout(time: 5, unit: 'MINUTES') {
-        //             waitForQualityGate abortPipeline: true
-        //         }
-        //     }
-        // }
     }
 
     post {
         success {
-            echo '✅ BUILD & SONAR ANALYSIS SUCCESSFUL'
+            echo 'BUILD SUCCESS'
         }
         failure {
-            echo '❌ BUILD OR SONAR FAILED'
+            echo 'BUILD FAILED'
         }
     }
 }
