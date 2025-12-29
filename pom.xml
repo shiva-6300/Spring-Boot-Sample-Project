@@ -18,11 +18,10 @@
     <artifactId>BankApplicationBackend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>BankApplicationBackend</name>
-    
-    <!-- ✅ Add packaging -->
+
+    <!-- ✅ Ensure Maven produces JAR -->
     <packaging>jar</packaging>
 
-    <!-- Java target remains 1.8 -->
     <properties>
         <java.version>1.8</java.version>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -97,11 +96,13 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
 
     <build>
         <plugins>
-            <!-- Spring Boot Maven Plugin for executable JAR -->
+
+            <!-- ✅ Spring Boot Maven Plugin for executable JAR -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -115,7 +116,7 @@
                 </executions>
             </plugin>
 
-            <!-- Maven Compiler -->
+            <!-- Maven Compiler Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -123,6 +124,9 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+                    <compilerArgs>
+                        <arg>-Xlint:unchecked</arg>
+                    </compilerArgs>
                 </configuration>
             </plugin>
 
@@ -132,6 +136,7 @@
                 <artifactId>sonar-maven-plugin</artifactId>
                 <version>3.9.1.2184</version>
             </plugin>
+
         </plugins>
     </build>
 
